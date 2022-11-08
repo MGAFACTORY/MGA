@@ -3,10 +3,8 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
-<div>
-    <a href="http://mga/accueil/inscription/particulier">Particulier</a>
-    <a href="http://mga/accueil/inscription/pro">Pro</a>
-    <!-- <input type="button" href="/particulier" value="Particulier">
-    <input type="button" href="/pro" value="Pro"> -->
+<div style="text-align: center">
+    <button><a href="{{path('app_inscription_particulier')}}">Particulier</a></button>
+    <button><a href="{{path('app_inscription_pro')}}">Pro</a></button>  
 </div>
 {% endblock %}

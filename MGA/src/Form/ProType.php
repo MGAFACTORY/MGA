@@ -21,6 +21,7 @@ class ProType extends AbstractType
             ->add('name', TextType::class, ['label'=>'Prenom'])
             ->add('email', EmailType::class, ['label'=>'Email'])
             ->add('password', PasswordType::class, ['label'=>'Mot de passe'])
+            ->add('confirm_password',PasswordType::class, ['label'=>'Confirmation du mot de passe'])
             ->add('save', SubmitType::class)
         ;
     }

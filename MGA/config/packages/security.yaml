@@ -1,7 +1,7 @@
 security:
     password_hashers:
         App\Entity\Particulier: 'auto'
-        # App\Entity\Pro: 'auto'
+        App\Entity\Pro: 'auto'
         
         #     algorithm: auto
 

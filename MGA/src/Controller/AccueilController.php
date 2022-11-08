@@ -23,4 +23,11 @@ class AccueilController extends AbstractController
             'controller_name' => 'AccueilController',
         ]);
     }
+
+    #[Route('/accueil/inscription/reussi/{compte}', name:'app_accueil_inscription_reussi')]
+    public function inscriptionReussi($compte){
+        return $this->render('accueil/reussi.html.twig',
+        ['controller_name'=> 'AccueilController',
+        'compte'=>$compte]);
+    }
 }

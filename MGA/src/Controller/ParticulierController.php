@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\Encoder\UserpasswordEncoder;
@@ -24,7 +25,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class ParticulierController extends AbstractController
 {
-    #[Route('accueil/inscription/particulier', name: 'app_particulier')]
+    #[Route('accueil/inscription/particulier', name: 'app_inscription_particulier')]
     public function form(ManagerRegistry $doctrine,Request $request,UserPasswordHasherInterface $passwordHasher): Response
     {
         $entityManager= $doctrine->getManager();
@@ -38,7 +39,8 @@ class ParticulierController extends AbstractController
             $particulier->setPassword($hash);
             $entityManager->persist($particulier);
             $entityManager->flush();
-            return $this->redirectToRoute('app_accueil');
+            //return $this->redirectToRoute("app_accueil_inscription_reussi");
+            return $this->redirect("/accueil/inscription/reussi/particulier");
         }            
             
         return $this->render('particulier/formParticulier.html.twig', [
@@ -47,10 +49,6 @@ class ParticulierController extends AbstractController
         ]);
     }
 
-    #[Route('/particulier/accueil', name:'task_success')]
-    public function accueil(){
-        return $this->render('accueil/index.html.twig');
-    }
     
 }
    

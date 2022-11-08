@@ -15,7 +15,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class ProController extends AbstractController
 {
-    #[Route('accueil/inscription/pro', name: 'app_pro')]
+    #[Route('accueil/inscription/pro', name: 'app_inscription_pro')]
     public function form(ManagerRegistry $doctrine,Request $request,UserPasswordHasherInterface $passwordHasher): Response
     {
         $entityManager= $doctrine->getManager();
@@ -29,7 +29,7 @@ class ProController extends AbstractController
             $pro->setPassword($hash);
             $entityManager->persist($pro);
             $entityManager->flush();
-            return $this->redirectToRoute('app_accueil');
+            return $this->redirect('/accueil/inscription/reussi/pro');
         }  
 
         return $this->render('pro/formPro.html.twig', [

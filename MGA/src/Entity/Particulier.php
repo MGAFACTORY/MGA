@@ -7,9 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ParticulierRepository::class)]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[UniqueEntity(fields: ['email'], message: 'Cette email est déja utiliser pour un compte Particulier')]
 class Particulier implements UserInterface, PasswordAuthenticatedUserInterface 
 {
     #[ORM\Id]
@@ -24,10 +25,20 @@ class Particulier implements UserInterface, PasswordAuthenticatedUserInterface
     private array $roles = [];
 
     /**
-     * @var string The hashed password
+     * @Assert\Length(min="8", minMessage="Le mot de passe doit contenir minimum 8 caractères")
+     * 
+     *
+     * @var string|null
      */
     #[ORM\Column]
     private ?string $password = null;
+
+    /**
+     * @Assert\EqualTo(propertyPath="password", message="Le mot de passe n'est pas identique")
+     *
+     * @var string
+     */
+    public string $confirm_password;
 
     #[ORM\Column(length: 255)]
     private ?string $surname = null;
