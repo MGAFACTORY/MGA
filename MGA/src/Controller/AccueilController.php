@@ -30,4 +30,12 @@ class AccueilController extends AbstractController
         ['controller_name'=> 'AccueilController',
         'compte'=>$compte]);
     }
+    /**
+     * @Route("/accueil/connexion", name="security_login")
+     *
+     * @return void
+     */
+    public function connexion(){
+
+    }
 }
